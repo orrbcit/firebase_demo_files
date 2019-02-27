@@ -1,0 +1,227 @@
+<!DOCTYP html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <!-- next 11-13 lines are copied from firebase console -->
+    <!-- go to "project overview" in console, click on "+add app" to see this code -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+         ....
+        };
+        firebase.initializeApp(config);
+    </script>
+
+</head> 
+<body>
+    <h1 id="orange">hello CST, it's monday</h1>        
+            
+    <!-- The following section contains javascript code for demo purposes -->
+    <!-- For best practices, this should go in a separate file -->
+    <script>
+        
+    //------------------
+    // Dinosaur Example
+    //------------------
+        
+        //-------------------------------------------
+        // write data into the dinosaur database
+        var name = "cstsaurus";
+        var height = 123;
+        var weight = 321;
+        firebase.database().ref("dinosaurs/" + name).set({
+            height: height,
+            weight: weight
+        });
+        
+        //-------------------------------------------
+        // output name of the 2 shortest dinosaurs
+        // cycle through the child objects, ie
+        //    dinosaurs/erex
+        //    dinosaurs/trex, etc.
+        var ref = firebase.database().ref("dinosaurs/");
+        // Next line returns a list of objects under the dinosaurs/ path
+        // ordered by a child key called 'height'
+        ref.orderByChild("height").limitToFirst(1).on(
+            "child_added", 
+            function(snap) {
+                console.log("---Name of the shortest dinosaur");
+                console.log (snap.key);    //print dinosaur name, ie, key
+            });
+        
+    //----------------------------------------
+    // User Account and Interest Group Example
+    //----------------------------------------
+        
+        //-------------------------------------------
+        // update data into the users database
+        // and the interest database
+        var userid = "A004";
+        var address = "vancouver";
+        var name = "rosie";
+        var set = "A";
+        var interest = "eatery";
+        var description = "Restaurants and coffee shops";
+        
+        var descriptObj = {"description": description};    //first key-value pair in json object
+        var memberObj = {};                         //create members sub-node
+        memberObj[name] = true;                     //add key-value pair of sub-node
+        firebase.database().ref("interest/"+interest+"/description").update(descriptObj);
+        firebase.database().ref("interest/"+interest+"/members").update(memberObj);
+        firebase.database().ref("users/"+userid).update(
+            {address:address, description:description, 
+            interest:interest, name:name, set:set});
+        
+        
+        //-------------------------------------------
+        // output the name of user A003
+        // method #1
+        var userid = "A003";
+        var ref = firebase.database().ref("users/" + userid);
+        ref.on(
+            "value",   
+            function(snap) {
+                //print name of the person, ie, value of the "name" property
+                //use stringify to convert JSON value to printable string
+                console.log("---Name of person who is ID " + userid);
+                console.log(JSON.stringify(snap.val().name));    
+            });
+        
+        // method #2  
+        var ref = firebase.database().ref("users/");
+        ref.orderByKey().equalTo(userid).on(
+            "child_added",   
+            function(snap) {
+                console.log("---Name of person who is ID " + userid);
+                console.log(JSON.stringify(snap.val().name));    
+            });
+      
+  
+        //-------------------------------------------
+        // output the name of all members in the "sustainability" group
+        // ref returns a list of objects referenced by snap
+        // cycle through this list with "forEach" and print out the key value
+        var group = "sustainability";
+        var ref = firebase.database().ref("interest/" + group + "/members");
+        ref.on(
+            "value",
+            function(snap){
+                console.log("---Names of all members in " + group + " group");
+                snap.forEach(function(snap){
+                    console.log(snap.key);
+                });
+            });
+        
+   //----------------------------------------
+   // Journal Post Example
+   //----------------------------------------
+           
+        //-------------------------------------------
+        // output the title of all the posts
+        var ref = firebase.database().ref("posts/");
+        ref.on(
+            "value",
+            function(snap){
+                console.log("---Titles of all posts unsorted: ");
+                snap.forEach(function(snap){
+                    console.log(JSON.stringify(snap.val().title));
+                });
+                
+            });
+        
+        //-------------------------------------------
+        // output the title of all the posts
+        // sorted by "likes"
+        // Assume: likes are accumulated as negative points
+        // since firebase ordering is only in ascending order
+        var ref = firebase.database().ref("posts/");
+        ref.orderByChild("metrics/likes").on(
+            "value",
+            function(snap){
+                console.log("---Titles of all posts sorted by likes: ");
+                snap.forEach(function(snap){
+                    console.log(JSON.stringify(snap.val().title));
+                });
+            });
+  
+    //----------------------------------------
+    // Recipes and Ingredient Search Example
+    //----------------------------------------
+       
+        //-------------------------------------------
+        // write new recipe
+        // update  1) recipes database  2) protein database
+        var name = "yum6";
+        var picture = "yum6.jpg"
+        var protein = "tofu"
+        var ingredients = {"carrots": true, "rice": true};
+        ingredients[protein] = true;
+        
+        firebase.database().ref("recipes/" + name).set({
+            ingredients:ingredients,
+            picture: picture
+        });
+        
+        var proteinObj = {};
+        proteinObj[name] = true;
+        firebase.database().ref("protein/" + protein).update(proteinObj);
+        
+        //-------------------------------------------
+        // output all recipes that include "chicken"
+        var protein = "chicken";
+        var ref = firebase.database().ref("protein/" + protein);
+        ref.on(
+            "value",
+            function(snap){
+                console.log("---All the recipes that contain: " + protein);
+                snap.forEach(function(snapshot){
+                    console.log(snapshot.key);
+                });
+            });
+    </script>
+            
+    <!--
+    //----------------------------------------
+    // Allergies List Example
+    //
+    // This example has text input where user enters an "allergy". 
+    // When the submit button is clicked, we run a script
+    // to read the database for list of restaurants, and their
+    // lists of menu items for each allergy.
+    //----------------------------------------
+    -->
+        <h2>Please type your allergy:</h2>
+		<div id="buttonContainer">
+			<input id = "allergy" >
+        	<input type="submit" onclick="myFunction()" value="submit">
+			<p id="demo"></p>
+		</div>
+    
+    
+   		<script>     
+        function myFunction() { 	
+			var name = document.getElementById("allergy").value;
+            var allergyName = name+"-free";
+            console.log("Searching database for dishes that are: " + allergyName);
+			
+			var dbref = firebase.database().ref("allergy_list/"+allergyName);
+            dbref.on('value', function(snap) {
+                    var list = snap.val();
+                    // console.log(list);
+                    // loop through every restaurant
+                    for (var restaurant in list){
+                        console.log("Restaurant name: "+restaurant);
+                        items = list[rest];
+                        // loop through every item on list
+                        for (var item in items){
+                            console.log("Menu item: " + items[item]);
+                        }
+                    }
+            });
+        }    
+    	</script>
+
+</body>
+</html>
