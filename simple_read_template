@@ -1,0 +1,21 @@
+<!DOCTYP html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!--  Init stuff goes here -->
+
+</head>
+<body>
+    <!-- DOM element goes here -->
+    <h1 id="abc"> hey guys </h1>
+
+    <!-- app.js goes here -->
+    <script>
+    //var output = document.getElementById('abc');
+    //var dbRef = firebase.database().ref().child('message1');
+    //dbRef.on('value', snap => output.innerText = snap.val());
+    </script>
+
+</body>
+</html>
