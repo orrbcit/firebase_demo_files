@@ -1,0 +1,28 @@
+<html>
+
+<body>
+
+<h1 id="demo">  </h1>
+<h2 id="demo2">  </h2>
+
+<script>
+	// iterate through a JSON object
+	// key has quotes
+	myObj = {"name": "John", "age":30, "car": null};
+	for (x in myObj) {
+		document.getElementById("demo").innerHTML += x+" "+ myObj[x]+" ";
+	}
+</script>
+
+<script>
+    // iterate through a Javascript object
+    // key has no quotes
+	myObj2 = {name: "Paul", name:33, car: null};
+	for (x2 in myObj2) {
+		document.getElementById("demo2").innerHTML += x2+" "+ myObj[x2]+" ";
+	}
+</script>
+
+</body>
+
+</html>
