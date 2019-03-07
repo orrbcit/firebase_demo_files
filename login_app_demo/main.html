@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>    
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <title>Main Page</title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+</head>
+<body>
+    <script src="setup_firebase_carly.js"></script>
+
+    <h1 id="banner">  </h1>
+    <h1 id="quote">  </h1>
+    <script src="greetingQuote.js"></script>
+
+    <button id="btnLogout" class="button"> Log Out </button>
+    <button id="btnUpdateProfile" class="button" onclick="window.location.href='profile.html'"> Update Profile </button>
+    <script>
+	btnLogout.addEventListener("click", function(e) {
+		var promise = firebase.auth().signOut();
+        promise.then(function(){
+            window.location.href='index.html';
+        });
+	});
+    </script>
+    
+    <script src="create_user.js"></script>
+
+</body>
+</html>
+

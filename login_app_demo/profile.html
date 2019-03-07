@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <title> Profile Form</title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+</head>
+<body>
+
+   <script src="setup_firebase_carly.js"></script>
+   <p>Enter additional profile information.</p>
+   <form id="profile" >
+      Set: <input type="text" id="set" name="set"><br>
+      Hobby: <input type="text" id="interest" name="interest"> <br>
+      Program: <input type="text" id="program" name="program"> <br><br>
+      <input type="submit">
+   </form>
+
+   <script>
+   document.getElementById('profile').addEventListener('submit', submitForm);
+
+   function submitForm(e) {
+       e.preventDefault();
+       var set = document.getElementById("set").value;
+       var interest = document.getElementById("interest").value;
+       var program = document.getElementById("program").value;
+
+       //console.log(set);
+       //console.log(interest);
+       //console.log(program);
+
+       var firebase = app_firebase;
+       
+       firebase.auth().onAuthStateChanged(function(user){
+        	console.log(set);
+          	console.log(interest);
+          	console.log(program);
+          	console.log(user.uid);
+          	
+          	//Update database with the profile info collected for the user
+          	var promise = firebase.database().ref('users/'+user.uid).update( {
+           	 "set": set,
+           	 "interest": interest,
+           	 "program": program
+         	 });
+          
+         	//When the databate update is done, then go to main.html
+       	 	promise.then(function() {
+       			window.location.href="main.html";
+       		});
+       });
+   };
+   </script>
+
+</body>
+</html>
+
+
