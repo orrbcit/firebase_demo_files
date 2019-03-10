@@ -9,13 +9,17 @@
     var quote = document.getElementById("quote");
     var userName = "my friend";
     var userQuote = " ";
-    var numQuotes = 5;
+    var numQuotes=0;
+    var rand=0;
 
     //If the current user is authenticated then
     //	grab userName
     //	grab quote from database
     //	update "quote" DOM
     //	Finally, update "hello" DOM
+    
+    quote.innerText = userQuote;
+    banner.innerText = "Hello " + userName;
     
     firebase.auth().onAuthStateChanged(function(user){
     	if (user){
@@ -27,27 +31,32 @@
 	  		//display quote from database 
 	  		
 	  		var dbRef = firebase.database().ref('quotes/count');
-	  		dbRef.on('value', function(snap) {
+	  		var promise = dbRef.once('value', function(snap) {
 	  			 numQuotes = snap.val();
-	  			 console.log(numQuotes);
+	  			 localStorage.setItem("num", numQuotes);
 	  			 });
-			console.log(numQuotes);
-	  		
-	  		//random number between 1 and num
-	  		var randNum = Math.floor(Math.random()*numQuotes)+1;
-	  		console.log (randNum);
-	
-			var dbRef = firebase.database().ref('quotes/').child(randNum);
+			//console.log (localStorage.getItem("num"));
 			
+	  		//random number between 1 and num
+	  		promise.then(function(){
+	  			rand = Math.floor(Math.random()* localStorage.getItem("num"))+1;
+	  			localStorage.setItem("rand", rand);
+	  			});
+
+			//convert Random number to a string for db reference
+			var randString = localStorage.getItem("rand")+"";			
+			var dbRef = firebase.database().ref('quotes/').child(""+randString);
 			dbRef.on('value', function(snap){
                 userQuote = snap.val();
                 quote.innerText = userQuote;
-                banner.innerText = "Hello " + userName;
+                console.log(userQuote);
             });
-    	} else {
-                quote.innerText = userQuote;
-                banner.innerText = "Hello " + userName;
-        }        
+    	} 
+    	
+      
+
+        
+        
     });
 })();
 
