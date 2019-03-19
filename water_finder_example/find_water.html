@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <title>Landing Page</title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
+</head>
+<body>
+    <script src="setup_firebase_carly.js"></script>
+    <h1 id="welcome"> Click on the location </h1>
+    <h2 id="banner"> </h2>
+    
+    <div id="metro"> Metro </div>
+    <div id="scott"> Scott Road </div>
+    <div id="sfu"> SFU </div>
+    <h2 id="results"> </h2>
+    
+    <script>
+    document.getElementById("metro").addEventListener("click", 
+        function(){
+        document.getElementById("banner").innerText = "You clicked on Metrotown!";
+        document.getElementById("metro").innerHTML = "";
+        ShowSource("metro")
+    });
+    
+                                                      
+    function ShowSource (location){
+        var list = [];
+        //console.log (location);
+        var dbRef = firebase.database().ref("locations/"+ location + "/nearby");
+        var promise = dbRef.once('value', function(snap){
+                //var nearby = snap.val();
+                //console.log(nearby);
+                snap.forEach(function(source){
+                            //console.log (source.key);
+                            list.push(source.key);
+                            //console.log(list);
+                        });
+            });
+        promise.then(function(){
+            //console.log (list);
+            //console.log (list.length);
+            for (s in list){
+                //console.log(list[s]);
+                var source = list[s];
+                db = firebase.database().ref("water-sources/"+list[s]);
+                db.once('value', function(snap){
+                            //console.log (snap.val());
+                            snap.forEach(function(snapshot){
+                                console.log(snapshot.key+": "+snapshot.val());
+                                document.getElementById("results").innerText += snapshot.key+": "+snapshot.val()+"\n";
+
+                            });
+                });
+            };
+        });
+    };
+        
+    </script>
+    
+</body>
+</html>
+
+
