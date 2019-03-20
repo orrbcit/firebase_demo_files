@@ -34,10 +34,10 @@
     function GetList (category){
         var dbRef = firebase.database().ref(category+ "/");
         var promise = dbRef.once('value', function(snap){
-                list = snap.val();
+                list = snap.val();      //returns a json object
         });
-        promise.then(function(){
-            DisplayList(list);
+        promise.then(function(){        //when db read is done
+            DisplayList(list);          //display the json object list
         });
     };        
         
