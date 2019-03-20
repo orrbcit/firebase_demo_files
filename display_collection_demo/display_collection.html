@@ -10,8 +10,7 @@
     <div id="dino"> Click here for "dinosaurs" </div>
     <div id="results">  </div>
     
-    <script>
-        
+    <script>  
     //------------------------------------------------------------------
     // When the "restaurant" dom is clicked, display all the restaurants
     //------------------------------------------------------------------
@@ -19,7 +18,6 @@
         function(){
         GetList("restaurants");     //name of collection in firebase
     });
-        
     //------------------------------------------------------------------
     // When the "dinosaur" dom is clicked, display all the dinosaurs
     //------------------------------------------------------------------
@@ -27,8 +25,9 @@
         function(){
         GetList("dinosaurs");     //name of collection in firebase
     });
-    
     //------------------------------------------------------------------
+    // Input param:     string representing category in firebase database
+    //
     // Go to the database and get a pointer to that collection category
     //------------------------------------------------------------------
     function GetList (category){
@@ -36,13 +35,12 @@
         var promise = dbRef.once('value', function(snap){
                 list = snap.val();      //returns a json object
         });
-        promise.then(function(){        //when db read is done
+        promise.then(function(){        //when aynch db read is done
             DisplayList(list);          //display the json object list
         });
     };        
-        
     //----------------------------------------------------------
-    // input param:  json object list
+    // Input param:     json object list
     //
     // Print out the key value pairs of every object in the list 
     // Create a <p> element to display that text
@@ -61,8 +59,6 @@
             para.appendChild(node);
         }
     }
-      
-        
     </script>
     
 </body>
