@@ -12,14 +12,14 @@
     
     <script>  
     //------------------------------------------------------------------
-    // When the "restaurant" dom is clicked, display all the restaurants
+    // When the "restaurant" dom is clicked, display all the restaurants.
     //------------------------------------------------------------------
     document.getElementById("rest").addEventListener("click", 
         function(){
         GetList("restaurants");     //name of collection in firebase
     });
     //------------------------------------------------------------------
-    // When the "dinosaur" dom is clicked, display all the dinosaurs
+    // When the "dinosaur" dom is clicked, display all the dinosaurs.
     //------------------------------------------------------------------
     document.getElementById("dino").addEventListener("click", 
         function(){
@@ -28,7 +28,7 @@
     //------------------------------------------------------------------
     // Input param:     string representing category in firebase database
     //
-    // Go to the database and get a pointer to that collection category
+    // Go to the database and get a pointer to that collection category.
     //------------------------------------------------------------------
     function GetList (category){
         var dbRef = firebase.database().ref(category+ "/");
@@ -42,8 +42,8 @@
     //----------------------------------------------------------
     // Input param:     json object list
     //
-    // Print out the key value pairs of every object in the list 
-    // Create a <p> element to display that text
+    // Loop through every object in the list, and print out key and/or value.
+    // Create a new <p> element to display that text for each item on list.
     //----------------------------------------------------------
     function DisplayList (list){
         //console.log(list);
