@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+</head>
+<body>
+    <script src="setup_firebase_carly.js"></script>
+    <h1 id="welcome"> Display collections from database ... </h1>
+    <h2 id="banner"> </h2>
+    
+    <div id="rest"> Click here for "restaurants" </div>
+    <div id="dino"> Click here for "dinosaurs" </div>
+    <div id="results">  </div>
+
+    
+    <script>
+        
+    //------------------------------------------------------------------
+    // When the "restaurant" dom is clicked, display all the restaurants
+    //------------------------------------------------------------------
+    document.getElementById("rest").addEventListener("click", 
+        function(){
+        GetList("restaurants");     //name of collection in firebase
+    });
+        
+    //------------------------------------------------------------------
+    // When the "dinosaur" dom is clicked, display all the dinosaurs
+    //------------------------------------------------------------------
+    document.getElementById("dino").addEventListener("click", 
+        function(){
+        GetList("dinosaurs");     //name of collection in firebase
+    });
+    
+    //------------------------------------------------------------------
+    // Go to the database and get a pointer to that collection category
+    //------------------------------------------------------------------
+    function GetList (category){
+        var dbRef = firebase.database().ref(category+ "/");
+        var promise = dbRef.once('value', function(snap){
+                list = snap.val();
+        });
+        promise.then(function(){
+            DisplayList(list);
+        });
+    };        
+        
+    //----------------------------------------------------------
+    // input param:  json object list
+    //
+    // Print out the key value pairs of every object in the list 
+    // Create a <p> element to display that text
+    //----------------------------------------------------------
+    function DisplayList (list){
+        //console.log(list);
+        //var list = {"rest1": "hortons", "rest2": "jugo", "rest3":"whitespot"};
+        for (x in list){
+            console.log(x);             //key   
+            console.log(list[x]);       //value
+            
+            // create a <p> element to show key value pair
+            var para = document.createElement("p");
+            document.body.appendChild(para);
+            var node = document.createTextNode (x);
+            para.appendChild(node);
+        }
+    }
+      
+        
+    </script>
+    
+</body>
+</html>
+
+
