@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- The following section defines the HEAD info of your application -->
+<head>
+    <meta charset="utf-8" />
+    <title>
+       Live Chat App Demo 
+    </title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="chat.css" />   
+</head>
+
+<!-- The following section defines the UI of the application -->
+<!-- Calls the chat.js script to get data input from user -->
+<body>
+    <script src="setup_firebase_carly.js"></script>
+    <input id="username" type="text" placeholder="Enter name"><br/>
+    <input id="text" type="text" placeholder="Enter message"><br/>
+    <button id="post"> Post </button> <br/>
+    <button id="clear"> Clear </button> <br/>
+    <div id="results"></div>
+    <script src="chat.js"></script>
+</body>
+
+</html>
