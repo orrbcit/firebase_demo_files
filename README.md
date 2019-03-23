@@ -25,5 +25,11 @@ created dynamically.
 - This example includes a DOM element listener, which initiates a read from the database,
 to return a list that is dislayed as simple text (no style).
   
+#### misc_relevant_bits
+- Files from lecture slides. Demonstrates asynch calls, use of promise, localStorage, and URI redirection with appended data
+
+#### chat_demo
+- A live chat mini-project.
+
   
   
