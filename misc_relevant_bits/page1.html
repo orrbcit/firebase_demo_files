@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCSD3CAl9dK9QKgpBKGo_ZEy-Lp3eMvqZ0",
+    authDomain: "daisy-24ad5.firebaseapp.com",
+    databaseURL: "https://daisy-24ad5.firebaseio.com",
+    projectId: "daisy-24ad5",
+    storageBucket: "daisy-24ad5.appspot.com",
+    messagingSenderId: "615674544570"
+  };
+  firebase.initializeApp(config);
+</script>
+    
+</head>
+<body>
+
+
+	<div id="buttonContainer">
+		<form id="stuff">
+		Item1: 
+		<input type="text" id="item1"> 
+		<br>
+		Item2: 
+		<input type="text" id="item2"\>
+		<br>
+		<input type="submit">
+	</div>
+    
+    
+   <script>     
+   
+   document.getElementById('stuff').addEventListener('submit', processForm);
+
+   function processForm(e) {
+       e.preventDefault();
+       var item1 = document.getElementById("item1").value;
+       var item2 = document.getElementById("item2").value;
+
+
+       // method1 - pass via URL string
+       window.location.href = "item.html?"+item1;
+       
+       // method2 - pass in localStorage 
+       // this is an object that can be accessed from next page
+       localStorage.setItem("item2", item2);
+    }
+    </script>
+    
+</body>
+</html>

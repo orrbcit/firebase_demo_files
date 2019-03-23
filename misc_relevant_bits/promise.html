@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+</head>
+<body>
+    <script src="setup_firebase_carly.js"></script>
+
+    <h2>Please select one of the following:</h2>
+	<div id="buttonContainer">
+		<button id = "newUser" onclick="myFunction()" class="homeButton">Add New Dinosaur</button>
+		<p id="demo"></p>
+	</div>
+    
+   <script>     
+        function myFunction() { 	
+			var name = "citsaurus";
+			var height = 299000;
+			var weight = 999;
+			
+			// The update() call is asynchronous
+			// The update() call returns a promise object
+			var promise = firebase.database().ref("dinosaurs/" + name).update({
+				height: height, weight: weight
+			});
+			
+			// The "then" function is only called when the Promise exists (is returned)
+			// The "then()" function can take a callback function 
+			promise.then(function() {
+			    window.location.href="next.html";    
+			});			
+        }
+    </script>
+    
+</body>
+</html>

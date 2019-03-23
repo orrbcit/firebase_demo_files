@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCSD3CAl9dK9QKgpBKGo_ZEy-Lp3eMvqZ0",
+    authDomain: "daisy-24ad5.firebaseapp.com",
+    databaseURL: "https://daisy-24ad5.firebaseio.com",
+    projectId: "daisy-24ad5",
+    storageBucket: "daisy-24ad5.appspot.com",
+    messagingSenderId: "615674544570"
+  };
+  firebase.initializeApp(config);
+</script>
+    
+</head>
+<body>
+    <h2>Please type your allergy:</h2>
+	<div id="buttonContainer">
+		<input id = "allergy" >
+        <input type="submit" onclick="myFunction()" value="submit">
+		<p id="demo"></p>
+	</div>
+    
+    
+   <script>     
+        function myFunction() { 	
+			var name = document.getElementById("allergy").value;
+            var allergyName = name+"-free";
+            console.log(allergyName);
+			
+			var dbref = firebase.database().ref("allergy_list/"+allergyName);
+            dbref.on('value', function(snap) {
+                    var list = snap.val();
+                    for (var rest in list){
+                        console.log("restaurants: "+rest);
+                        menus = list[rest];
+                        for (var menu in menus){
+                            console.log("menu item: " + menus[menu]);
+                        }
+                    }
+            });
+        }
+    </script>
+</body>
+</html>

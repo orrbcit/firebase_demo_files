@@ -1,0 +1,37 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+<h1> More info ... </h1>
+
+<script>
+
+    // method1 
+    // get value passed through a string, then parse the string
+    // value is visible to the user
+    var queryString = decodeURIComponent(window.location.search);
+	var queries = queryString.split("?");         //delimiter
+	var item1 = queries[1];
+	//document.write("item1="+item1);
+	    
+	var para = document.createElement("p");  //create p element
+	document.body.appendChild(para);         //attach <p> to body
+    var node = document.createTextNode("item1="+item1);  //create node
+    para.appendChild(node);                  //attach text to <p>
+	
+	// method2
+	// use localStorage, which is accessible when active until session 
+	var item2 = localStorage.getItem("item2");
+	//document.write("item2=" + item2);
+	
+    var para = document.createElement("p");
+    document.body.appendChild(para);
+    var node = document.createTextNode("item2="+item2);
+    para.appendChild(node);
+
+</script>
+</body>
+</html>
