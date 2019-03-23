@@ -14,10 +14,6 @@
       "height" : 299000,
       "weight" : 999
     },
-    "cstDOWNTOWNsaurus" : {
-      "height" : 999,
-      "weight" : 666
-    },
     "cstsaurus" : {
       "height" : 123,
       "weight" : 321
@@ -70,7 +66,41 @@
       }
     }
   },
+  "locations" : {
+    "metro" : {
+      "fullname" : "Metro Town Station",
+      "location-type" : "urban",
+      "nearby" : {
+        "source1" : true,
+        "source3" : true
+      }
+    },
+    "scott" : {
+      "fullname" : "Scott Road Station",
+      "location-type" : "rural",
+      "nearby" : {
+        "source1" : true,
+        "source2" : true
+      }
+    }
+  },
+  "log" : {
+    "-LacVlnpSnN6TyAQwrMd" : {
+      "text" : "huih",
+      "username" : "carly_wong_orr@bcit.ca"
+    },
+    "-LacsObhm343tO1vfvzV" : {
+      "text" : "你好",
+      "username" : "华恩"
+    }
+  },
   "message" : "Good is enemy of the Best",
+  "plants" : {
+    "herbs" : {
+      "garlic" : true,
+      "mint" : true
+    }
+  },
   "posts" : {
     "android-arch-3" : {
       "author" : "Doug",
@@ -118,7 +148,8 @@
     "3" : "Life is short, but eternity is long",
     "4" : "Why do tomorrow what you can do today?",
     "5" : "Stop to smell the flowers",
-    "count" : 4
+    "6" : "Hamlet:  0x2B | ~0x2B",
+    "count" : 6
   },
   "recipes" : {
     "yum1" : {
@@ -170,10 +201,26 @@
   },
   "restaurants" : {
     "poker" : {
-      "menu" : [ "bowl1", "bowl2", "bowl3" ]
+      "address" : "broadway",
+      "menu" : [ "bowl1", "bowl2", "bowl3" ],
+      "type" : "fusion"
     },
     "subway" : {
-      "menu" : [ "meal1", "meal2", "meal3", "meal4", "meal5" ]
+      "address" : "moscrop",
+      "menu" : [ "meal1", "meal2", "meal3", "meal4", "meal5" ],
+      "type" : "sandwich"
+    }
+  },
+  "teams" : {
+    "team01" : {
+      "andre" : true,
+      "noah" : true,
+      "young" : true
+    },
+    "team99" : {
+      "carly" : true,
+      "elmo" : true,
+      "vidhi" : true
     }
   },
   "users" : {
@@ -229,14 +276,44 @@
     },
     "iF2HU3z0ASaDOQzCx9ySQ2OzB0P2" : {
       "email" : "elmo@coldmail.com",
-      "interest" : "zzz",
+      "interest" : "only-chrome-only",
       "name" : "elmo",
-      "program" : "business",
-      "set" : "A"
+      "program" : "CIT",
+      "set" : "JJJJ"
     },
     "onoBcNZgW9e7m7WU6qV4SrrPfTE2" : {
       "email" : "elmo@bcit.com",
       "name" : "Elmo Rocks"
+    },
+    "xbJmdoMZqwNTAg8fFhqW4OPT6U63" : {
+      "email" : "spring@march.com",
+      "interest" : "planting flowers",
+      "name" : "Spring March",
+      "program" : "CST-DTC",
+      "set" : "ABC"
+    }
+  },
+  "water-sources" : {
+    "source1" : {
+      "address" : "111 blah road",
+      "cost" : "free",
+      "eco-friendly" : 4,
+      "fullname" : "Amy's Farm",
+      "type" : "Bring your own container to fill at tap"
+    },
+    "source2" : {
+      "address" : "222 blah road",
+      "cost" : "medium",
+      "eco-friendly" : 2,
+      "fullname" : "Walmart Store",
+      "type" : "Bottled water"
+    },
+    "source3" : {
+      "address" : "333 blah road",
+      "cost" : "high",
+      "eco-friendly" : 2,
+      "fullname" : "Starbucks",
+      "type" : "Made to order drink"
     }
   }
 }

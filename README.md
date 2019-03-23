@@ -3,6 +3,9 @@
 This folder contains a collection of demo projects used in class.
 To see the database in action, you must insert the javascript code that connects the web page to your live database。
 
+#### demo_data.json
+- This file is a sample json file with collections that are used in the demo examples. 
+
 #### db_read_write_demo    
 - This mini-project shows how to do basic read/writes into the database (techmini1)
 
