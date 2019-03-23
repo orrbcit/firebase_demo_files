@@ -21,14 +21,14 @@ postButton.addEventListener("click", function(){
     console.log(msgText);
 
     //The following 4 lines pushes a new JSON object onto DB in the "log" branch
-    myFirebase.ref('log').push({
+    myFirebase.ref('chatlog').push({
         username:msgUser,
         text:msgText});
     textInput.value = "";
 });
 
 clearButton.addEventListener("click", function(){
-    myFirebase.ref('log').remove()
+    myFirebase.ref('chatlog').remove()
         .then(function(){
         console.log("remove succeeded")
     })
@@ -42,7 +42,7 @@ clearButton.addEventListener("click", function(){
 });
 
 var beginListening = function() { 
-    myFirebase.ref('log').on('child_added', function(snapshot) {
+    myFirebase.ref('chatlog').on('child_added', function(snapshot) {
             var msg = snapshot.val();
             var msgUsernameElement = document.createElement("b");   //bold
             msgUsernameElement.textContent = msg.username;

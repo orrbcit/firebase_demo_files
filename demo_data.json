@@ -9,6 +9,16 @@
       "subway" : [ "meal5" ]
     }
   },
+  "chatlog" : {
+    "-Laf1e1rctEvLyySJSKE" : {
+      "text" : "Hey, long time no see!",
+      "username" : "Andrew"
+    },
+    "-Laf1i5UcxuugXMtXBN_" : {
+      "text" : "是啊，好久不见！",
+      "username" : "carly_wong_orr@bcit.ca"
+    }
+  },
   "dinosaurs" : {
     "citsaurus" : {
       "height" : 299000,
@@ -82,16 +92,6 @@
         "source1" : true,
         "source2" : true
       }
-    }
-  },
-  "log" : {
-    "-LacVlnpSnN6TyAQwrMd" : {
-      "text" : "huih",
-      "username" : "carly_wong_orr@bcit.ca"
-    },
-    "-LacsObhm343tO1vfvzV" : {
-      "text" : "你好",
-      "username" : "华恩"
     }
   },
   "message" : "Good is enemy of the Best",
