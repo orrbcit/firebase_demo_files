@@ -57,8 +57,19 @@
             document.body.appendChild(para);
             var node = document.createTextNode (x);
             para.appendChild(node);
+			DisplayImage ("./images/"+ x +".jpg", x);   
         }
     }
+	
+	function DisplayImage(picturefile) {
+		var x = document.createElement("IMG");
+		x.setAttribute("src", picturefile);
+		x.setAttribute("width", "100");
+		x.setAttribute("height", "100");
+		document.body.appendChild(x);
+	}
+
+
     </script>
     
 </body>
