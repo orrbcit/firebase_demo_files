@@ -57,10 +57,15 @@
             document.body.appendChild(para);
             var node = document.createTextNode (x);
             para.appendChild(node);
-			DisplayImage ("./images/"+ x +".jpg", x);   
+	    DisplayImage ("./images/"+ x +".jpg", x);   
         }
     }
 	
+	//---------------------------------------------------------
+	// input param:   string name of the picture file
+	//
+	// Generic function that displays the image provided dynamically
+	//---------------------------------------------------------
 	function DisplayImage(picturefile) {
 		var x = document.createElement("IMG");
 		x.setAttribute("src", picturefile);
