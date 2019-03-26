@@ -57,7 +57,9 @@
             document.body.appendChild(para);
             var node = document.createTextNode (x);
             para.appendChild(node);
-			DisplayImage ("./images/"+ x +".jpg", x);   
+			
+			//assume image using key-word followed by ".jpg" exists in images folder
+			DisplayImage ("./images/"+ x +".jpg");   
         }
     }
 	
