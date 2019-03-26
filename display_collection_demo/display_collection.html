@@ -57,12 +57,18 @@
             document.body.appendChild(para);
             var node = document.createTextNode (x);
             para.appendChild(node);
-			
+
 			//assume image using key-word followed by ".jpg" exists in images folder
 			DisplayImage ("./images/"+ x +".jpg");   
+
         }
     }
 	
+	//---------------------------------------------------------
+	// input param:   string name of the picture file
+	//
+	// Generic function that displays the image provided dynamically
+	//---------------------------------------------------------
 	function DisplayImage(picturefile) {
 		var x = document.createElement("IMG");
 		x.setAttribute("src", picturefile);
