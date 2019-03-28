@@ -22,7 +22,7 @@ object in firebase.  The user who is logged in can also logout.
 - This mini-project is similar to techmini3.  When a DOM element is clicked, the script 
 reads from the database to get a collection of objects, and then uses a for loop to display 
 all the items in the collection.  The objects are displayed in DOM elements that are 
-created dynamically ("on the fly").
+created dynamically ("on the fly").  An image is also displayed.  The image filename is read from the database object, and a "img" element is created dynamically.  The images are all located in a "/images" folder in the project directory.  There is no styling. 
 
 #### water_finder_example  
 - This example includes a DOM element listener, which initiates a read from the database,
