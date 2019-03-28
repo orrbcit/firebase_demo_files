@@ -2,9 +2,6 @@
 
     var firebase = app_firebase;
     
-    // display personalized Hello line
-    // construct "banner" and "quote" strings
-    
     var banner = document.getElementById("banner");
     var quote = document.getElementById("quote");
     var userName = " ";
@@ -13,22 +10,12 @@
     var rand=0;
 
     //If the current user is authenticated then
-    //	grab userName
-    //	grab quote from database
-    //	update "quote" DOM
-    //	Finally, update "hello" DOM
-    
-    quote.innerText = userQuote;
-    banner.innerText = "Hello ";
-    
+  
     firebase.auth().onAuthStateChanged(function(user){
     	if (user){
-          	var userName=user.displayName;
-            var userEmail=user.email;
-			banner.innerText += " "+ userName;    // add user name to after hello
-			
-            //console.log(userEmail);
-	  		//console.log (userName);
+          	var userName=user.displayName;			  // grab name of user
+			banner.innerText = "Hello "+ userName;    // update with Personalized Hello
+
 	  		//display quote from database 	
 	  		var dbRef = firebase.database().ref('quotes/count');
 	  		var promise = dbRef.once('value', function(snap) {
@@ -47,7 +34,7 @@
 			var dbRef = firebase.database().ref('quotes/').child(""+randString);
 			dbRef.on('value', function(snap){
                 userQuote = snap.val();
-                quote.innerText = userQuote;
+                quote.innerText = userQuote;		// update with Quote
                 console.log(userQuote);
             });
     	} 
