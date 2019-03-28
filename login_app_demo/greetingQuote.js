@@ -7,7 +7,7 @@
     
     var banner = document.getElementById("banner");
     var quote = document.getElementById("quote");
-    var userName = "my friend";
+    var userName = " ";
     var userQuote = " ";
     var numQuotes=0;
     var rand=0;
@@ -19,24 +19,23 @@
     //	Finally, update "hello" DOM
     
     quote.innerText = userQuote;
-    banner.innerText = "Hello " + userName;
+    banner.innerText = "Hello ";
     
     firebase.auth().onAuthStateChanged(function(user){
     	if (user){
-          	userName=user.displayName;
+          	var userName=user.displayName;
             var userEmail=user.email;
-            
+			banner.innerText += " "+ userName;    // add user name to after hello
+			
             //console.log(userEmail);
 	  		//console.log (userName);
-	  		//display quote from database 
-	  		
+	  		//display quote from database 	
 	  		var dbRef = firebase.database().ref('quotes/count');
 	  		var promise = dbRef.once('value', function(snap) {
 	  			 numQuotes = snap.val();
 	  			 localStorage.setItem("num", numQuotes);
 	  			 });
 			//console.log (localStorage.getItem("num"));
-			
 	  		//random number between 1 and num
 	  		promise.then(function(){
 	  			rand = Math.floor(Math.random()* localStorage.getItem("num"))+1;
@@ -52,10 +51,6 @@
                 console.log(userQuote);
             });
     	} 
-    	
-      
-
-        
         
     });
 })();
