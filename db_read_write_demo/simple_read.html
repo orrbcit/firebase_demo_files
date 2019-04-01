@@ -2,6 +2,8 @@
 <head>
 
    <!-- add your db snippet here -->
+   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+   <script src="setup_firebase_carly.js"></script>
    
 </head>
 <body>
@@ -12,7 +14,7 @@
     <!-- assumes you have a firebase RT DB with a "message" key -->
 	<script>
 	var output = document.getElementById("abc");
-	var dbRef = firebase.database().ref().child("message");
+	var dbRef = firebase.database().ref().child("message1");
 	dbRef.on (
 		"value",    //event to read static snapshot of db at initial call, and future chg
 		function(snap){        // event callback receives snapshot
