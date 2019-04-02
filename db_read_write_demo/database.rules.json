@@ -1,0 +1,14 @@
+{  
+  "rules":{
+    "users":{
+    	".read": "auth.uid!=null",
+    	".write": "auth.uid!=null"
+    },
+   //"message":{
+   //   ".read": "auth.uid!=null",
+   // 	".write": "auth.uid!=null"
+   // },
+    ".read": true,
+    ".write": true
+  }
+}

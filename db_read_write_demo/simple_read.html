@@ -9,26 +9,15 @@
 <body>
 
 	<!-- DOM element goes here -->
-    <h1 id="abc"> HI CST !!! </h1>
-    <!-- uncomment lines below to see demo of realtime db -->
+    <h1 id="123"> HI CST !!! </h1>
+    
     <!-- assumes you have a firebase RT DB with a "message" key -->
 	<script>
-	var output = document.getElementById("abc");
-	var dbRef = firebase.database().ref().child("message1");
-	dbRef.on (
-		"value",    //event to read static snapshot of db at initial call, and future chg
-		function(snap){        // event callback receives snapshot
-			output.innerText = snap.val();
-		});
+	   var out = document.getElementById("123");
+	   var db = firebase.database().ref().child("message");
+	   db.on ("value", snap => out.innerText = snap.val());
 	</script>
-	
-	<h1 id="123"> This is my page </h1>
-	<script>
-	//Uses shorthand arrow notation for callback function
-	var out = document.getElementById("123");
-	var db = firebase.database().ref().child("message2");
-	db.on ("value", snap => out.innerText = snap.val());
-	</script>
+    
 </body>
 </html>
 
